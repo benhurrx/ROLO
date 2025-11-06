@@ -1,9 +1,7 @@
-import { Box, Typography } from '@mui/material';
+import MarketPlace from "./marketplace/page";
 
 export default function Home() {
   return (
-    <Box>
-      <Typography variant='h3'>Home</Typography>
-    </Box>
+    <MarketPlace />
   );
 }

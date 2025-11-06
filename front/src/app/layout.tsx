@@ -1,5 +1,12 @@
+import ThemeRegistry from '@/theme/themeRegistry';
 import type { Metadata } from 'next';
-import './globals.css';
+import { Sora } from 'next/font/google';
+
+const sora = Sora({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -13,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='pt-BR'>
-      <body className={``}>{children}</body>
+      <body className={sora.className}>
+        <ThemeRegistry>{children}</ThemeRegistry>
+      </body>
     </html>
   );
 }
