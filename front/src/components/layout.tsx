@@ -22,7 +22,7 @@ import Link from 'next/link';
 import { ReactNode, useState } from 'react';
 
 interface layoutProps {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export default function RoloLayout({ children }: layoutProps) {
