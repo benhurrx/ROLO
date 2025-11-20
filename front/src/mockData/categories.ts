@@ -1,4 +1,9 @@
-const categorieData = [
+export interface categoriesProps {
+  img: string;
+  name: string;
+}
+
+const categorieData: categoriesProps[] = [
   {
     img: 'https://placehold.co/100/272A30/FFF',
     name: 'one',
