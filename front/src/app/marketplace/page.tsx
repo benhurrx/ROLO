@@ -1,6 +1,6 @@
-import Carousel from '@/components/carousel';
 import CategoryButton from '@/components/CategoryButton';
-import SearchBar from '@/components/searchBar';
+import { BannerCarousel } from '@/components/carousel';
+import SearchBar from '@/components/SearchBar';
 import bannerData from '@/mockData/banner';
 import categorieData from '@/mockData/categories';
 import productsData from '@/mockData/products';
@@ -18,7 +18,7 @@ import Link from 'next/link';
 export default function MarketPlace() {
   return (
     <>
-      <Carousel>
+      <BannerCarousel>
         {bannerData.map((banner, index) => (
           <Box
             key={index}
@@ -28,23 +28,21 @@ export default function MarketPlace() {
             sx={{
               backgroundColor: '#D9D9D9',
               width: '100%',
-              height: '15em',
               objectFit: 'cover',
             }}
           />
         ))}
-      </Carousel>
+      </BannerCarousel>
       <Box
         sx={{
-          padding: '1em',
+          padding: '1rem',
           display: 'flex',
           flexDirection: 'column',
-          gap: '1em',
+          gap: '1rem',
         }}
       >
         <SearchBar placeholder='Procurar por um item...' />
         <Box
-          component='div'
           sx={{
             display: 'flex',
             flexDirection: 'row',
@@ -66,23 +64,22 @@ export default function MarketPlace() {
               >
                 <Card
                   variant='outlined'
-                  sx={{ borderRadius: '0.5em', height: '100%' }}
+                  sx={{ borderRadius: '0.5rem', height: '100%' }}
                 >
                   <CardMedia
                     component='img'
                     height={160}
-                    image={product.image}
+                    image={product.images.main}
                   />
                   <CardContent sx={{ padding: 1 }}>
                     <Typography variant='body2' color='textSecondary'>
-                      {product.name}
+                      {product.title}
                     </Typography>
                     <Typography variant='body1' color='primary'>
                       R$ {product.price}
                     </Typography>
                   </CardContent>
                   <Box
-                    component='div'
                     sx={{
                       display: 'flex',
                       flexDirection: 'column',
@@ -95,7 +92,6 @@ export default function MarketPlace() {
                     }}
                   >
                     <Box
-                      component='div'
                       sx={{
                         display: 'flex',
                         flexDirection: 'row',
@@ -104,26 +100,25 @@ export default function MarketPlace() {
                       }}
                     >
                       <Avatar
-                        src={product.seller.Avatar}
+                        src={product.seller.avatar}
                         alt={`${product.seller.name} avatar`}
-                        sx={{ width: 24, height: 24 }}
+                        sx={{ width: '1.75rem', height: '1.75rem' }}
                       />
-                      <Typography variant='body2' sx={{ fontSize: 12 }}>
+                      <Typography variant='body2' sx={{ fontSize: 14 }}>
                         {product.seller.name}
                       </Typography>
                     </Box>
                     <Box
-                      component='div'
                       sx={{
                         display: 'flex',
                         flexDirection: 'row',
                         justifyContent: 'space-between',
                       }}
                     >
-                      <Typography variant='body2' sx={{ fontSize: 12 }}>
+                      <Typography variant='body2' sx={{ fontSize: 14 }}>
                         {(() => {
                           const now = new Date();
-                          const date = new Date(product.dateTime);
+                          const date = new Date(product.createdAt);
                           const diffMs = now.getTime() - date.getTime();
                           const diffHours = Math.floor(
                             diffMs / (1000 * 60 * 60)
@@ -141,7 +136,7 @@ export default function MarketPlace() {
                           }
                         })()}
                       </Typography>
-                      <Typography variant='body2' sx={{ fontSize: 12 }}>
+                      <Typography variant='body2' sx={{ fontSize: 14 }}>
                         {product.location.city} - {product.location.state}
                       </Typography>
                     </Box>
